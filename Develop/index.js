@@ -20,32 +20,6 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'username',
-        message: 'What is your username?',
-        validate: githubInput => {
-            if (githubInput) {
-              return true;
-            } else {
-              console.log('Please enter your GitHub username!');
-              return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'project name',
-        message: 'What is your project name?',
-        validate: projName => {
-            if (projName) {
-              return true;
-            } else {
-              console.log('Please enter your Project Name!');
-              return false;
-            }
-          }
-    },
-    {
-        type: 'input',
         name: 'description',
         message: 'Provide a description of the project (Required)',
         validate: descriptionInput => {
@@ -59,9 +33,29 @@ const questions = [
     },
     {
         type: 'input',
-        name: 'about',
-        message: 'Provide some information about yourself:',
-        when: ({ confirmAbout }) => confirmAbout
+        name: 'installation',
+        message: 'Provide installation instructions.',
+        validate: installationInput => {
+          if (installationInput) {
+            return true;
+          } else {
+            console.log('You need to enter installation instructions!');
+            return false;
+          }
+        }
+    },
+    {
+      type: 'input',
+      name: 'test',
+      message: 'Provide test instructions.',
+      validate: testInput => {
+        if (testInput) {
+          return true;
+        } else {
+          console.log('You need to enter test instructions!');
+          return false;
+        }
+      }
     },
     {
         type: 'checkbox',
@@ -72,20 +66,81 @@ const questions = [
       {
         type: 'input',
         name: 'link',
-        message: 'Enter the GitHub link to your project. (Required)',
+        message: 'Enter the GitHub link to your account. (Required)',
         validate: linkInput => {
           if (linkInput) {
             return true;
           } else {
-            console.log('You need to enter a project GitHub link!');
+            console.log('You need to enter a GitHub link!');
             return false;
           }
         }
-    }
+      },
+      {
+        type: 'input',
+        name: 'license',
+        message: 'What license did you use?'
+      },
+    {
+      type: 'input',
+      name: 'username',
+      message: 'What is your username?',
+      validate: githubInput => {
+          if (githubInput) {
+            return true;
+          } else {
+            console.log('Please enter your GitHub username!');
+            return false;
+          }
+      }
+    },
+    {
+      type: 'input',
+      name: 'email',
+      message: 'Enter an email for questions. (Required)',
+      validate: emailInput => {
+        if (emailInput) {
+          return true;
+        } else {
+          console.log('You need to enter an email!');
+          return false;
+        }
+      }
+    } 
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
+  return inquirer
+  .prompt(
+    {
+    type: 'confirm',
+    name: "confirmation",
+    message: 'Create a README.md? (Y/n)',
+    default: false
+    },
+    {
+      type: 'input',
+      name: "title",
+      message: 'Title your README.md',
+      validate: fileName => {
+        if (fileName) {
+          return true;
+        } else { 
+          console.log('Please enter a title!');
+          return false;
+        }
+      }
+    }
+  )
+  // .then(data => {
+  //   fileName.push(data);
+  //   if (data.confirmAddProject) {
+  //     return writeToFile(data);
+  //   } else {
+  //     return data;
+  //   }
+  // });
 }
 
 // TODO: Create a function to initialize app
