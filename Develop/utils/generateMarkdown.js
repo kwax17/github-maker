@@ -1,87 +1,81 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(licenseBadge) {
-  if (!licenseBadge) {
+function renderLicenseBadge(license) {
+  if (!license) {
     return '';
+  } else {
+    return `![badge](https://img.shields.io/badge/license-${license}-brightgreen)
+    `
   }
-  return `
-  ![Badge](./assets/images)
-  `;
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(licenseLink) {
-  if (!licenseLink) {
+function renderLicenseLink(license) {
+  if (!license) {
     return '';
+  } else {
+    return `
+## License
+${license}
+    `
   }
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(licenseLink) {
-  renderLicenseLink();
-
-  return `
-    ### License
-    Link: ${licenseLink}
-  `;
-}
+// function renderLicenseSection(license) {
+//   return `
+//   ## License
+//   Link: ${renderLicenseLink}
+//   `;
+// }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `${data
-    .filter(({ feature }) => feature)
-    .map(({ title, name, description, installation, test, languages, link, username, email }) => {
-      return `
-      # ${title}
-
-      ## Description
-      ${description}
-
-      ## Installation
-      ${installation}
-
-      ## Contributing
-      ${name}
-      ${languages.map(language => language).join(',')}
-
-      ## Tests
-      ${test}
-
-      ## Questions
-      ${username}
-      ${email}
-      ${link}
-    `;
-    })
-  }
-  `;
-};
-
-module.exports = generateMarkdown => {
-  const { title, badge, description, installation, usage, license, name, test, username, email, link } = generateMarkdown;
   return `
-  # Title
-  ${generateMarkdown(title)}
-  ${renderLicenseBadge(badge)}
+  ${data
+  .map(({ title, license, description, installation, name, languages, test, username, email, link, otherinfo }) => {
+  return `
+# ${title}
+${renderLicenseBadge(license)}
 
-  ## Table of Contents
+## Table of Contents
+- [Description] (#description)
+- [Installation] (#installation)
+- [Contributing] (#contributing)
+- [Languages] (#languages)
+- [License] (#license)
+- [Test] (#test)
+- [Questions] (#question)
 
-  ${generateMarkdown(description)}
+## Description
+${description}
 
-  ${generateMarkdown(installation)}
+## Installation
+${installation}
 
-  ${generateMarkdown(usage)}
+## Contributing
+${name}
 
-  ${renderLicenseSection(license)}
+## Languages
+${languages}
 
-  ${generateMarkdown(name)}
+${renderLicenseLink(license)}
 
-  ${generateMarkdown(test)}
+## Test
+${test}
 
-  ${generateMarkdown(username)}
-  ${generateMarkdown(email)}
-  href="https://github.com/${generateMarkdown(username)}
-  `;
+## Questions
+${otherinfo}
+${username}
+${email}
+href="https://github.com/${link}
+`;
+})
+.join('')};
+`;
 };
+
+
+module.exports = generateMarkdown;
