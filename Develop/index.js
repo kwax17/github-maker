@@ -77,19 +77,6 @@ const questions = [
         choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
       },
       {
-        type: 'input',
-        name: 'link',
-        message: 'Enter the GitHub link to your account. (Required)',
-        validate: linkInput => {
-          if (linkInput) {
-            return true;
-          } else {
-            console.log('You need to enter a GitHub link!');
-            return false;
-          }
-        }
-      },
-      {
         type: 'checkbox',
         name: 'license',
         message: 'What license did you use?',
@@ -124,7 +111,7 @@ const questions = [
     {
       type: 'input',
       name: 'otherinfo',
-      message: 'Any other info for the user?'
+      message: 'Any other info for the user? (Enter to ignore)'
     } 
 ];
 
