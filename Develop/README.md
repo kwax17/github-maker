@@ -16,10 +16,10 @@
 - [Questions] (#question)
 
 ## Description
-This program allows user to easily enter information about a project through command line prompts.      The info is then displayed in a webpage built through CSS and HTML.   The function of this program is to make the process of creating a portfolio quicker and easier.
+This program allows user to easily enter information about a project through command line prompts. The info is then displayed in a webpage built through CSS and HTML. The function of this program is to make the process of creating a portfolio quicker and easier.
 
 ## Installation
-Run command 'npm i'
+run command 'npm i'
 
 ## Test
 Run command 'npm test'
