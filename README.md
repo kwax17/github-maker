@@ -7,7 +7,7 @@ This project generates a professional README.md file for a user's project.  It m
 Javascript and Node.js
 
 ## Usage
-
+![Video showing functionality](./assets/images/challenge9.mov)
 
 ## Questions
 Email: kelwacker@gmail.com
